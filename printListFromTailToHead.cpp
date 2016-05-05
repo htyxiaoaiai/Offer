@@ -36,3 +36,16 @@ vector<int> printListFromTailToHead(struct ListNode* head) {
 }
 
 //注意最好入栈的时候将指针入栈，如果链表的数据类型为复杂类型则会比较浪费空间
+
+//递归实现
+void printListFromTailToHead(struct ListNode* head)
+{
+	//当节点为空时递归结束
+	if (head == NULL)
+	{
+		return;
+	}
+
+	printListFromTailToHead(head->next);
+	cout << head->val << "->";
+}
