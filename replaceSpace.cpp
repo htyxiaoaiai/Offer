@@ -50,4 +50,5 @@ void TestReplaceSpace()
 	char str[20] = "We Are Happy.";
 	replaceSpace(str, 20);
 	cout << str << endl;
+	cout<<endl;
 }
