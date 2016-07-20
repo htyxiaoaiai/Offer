@@ -1,0 +1,51 @@
+题目描述
+
+在一个排序的链表中，存在重复的结点，请删除该链表中重复的结点，重复的结点不保留，返回链表头指针。 
+例如，链表1->2->3->3->4->4->5 处理后为 1->2->5
+
+ListNode* deleteDuplication(ListNode* pHead)
+{
+	ListNode* prev = NULL;
+	ListNode* cur = pHead;
+
+	while (cur)
+	{
+		//每次进入之前更新next
+		ListNode* next = cur->next;
+		bool Delete = false;
+		if (next && cur->val == next->val)
+		{
+			Delete = true;
+		}
+
+		//删除
+		if (Delete)
+		{
+			ListNode* del = cur;
+			int value = cur->val;
+			while (cur&&cur->val == value)
+			{
+				del = cur;
+				cur = next;
+                if (next)
+					next = next->next;
+				delete del;
+			}
+			//删除之后将链表重新连接
+			if (prev == NULL)
+			{
+				pHead = cur;
+			}
+			else
+				prev->next = cur;
+
+		}
+		//不需要删除
+		else
+		{
+			prev = cur;
+			cur = cur->next;
+		}
+	}
+	return pHead;
+}
